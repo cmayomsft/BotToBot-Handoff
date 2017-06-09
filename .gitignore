@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Ignore these specfic files
+AppSettingsSecrets.config
+
 # User-specific files
 *.suo
 *.user

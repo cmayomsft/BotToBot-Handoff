@@ -19,6 +19,13 @@ var connector = new builder.ChatConnector({
     appPassword: config.appPassword
 });
 
+// Dictionary of global commands to forwarding URLs
+var commandUrls = {
+    [resources.SUB_BOT_1_MENU]: config.subBot1Url,
+    [resources.SUB_BOT_2_MENU]: config.subBot2Url,
+    [resources.MAIN_BOT_MENU]: null
+};
+
 // Intercepts and routes all messages
 server.post('/api/messages', [
     (req, res, next) => {
@@ -43,18 +50,11 @@ server.post('/api/messages', [
             if (req.body.type === 'message') {
                 var msgText = req.body.text;
 
-                // Check for main bot commands
-                if (msgText.toUpperCase() === resources.MAIN_BOT_MENU.toUpperCase()) {
-                    session.conversationData.forwardingUrl = null;
+                // If the message matches any global command, set the forwarding URL and clear the stack
+                var matchedBot = Object.keys(commandUrls).find(val => val.toUpperCase() === msgText.toUpperCase());
+                if (matchedBot !== undefined) {
+                    session.conversationData.forwardingUrl = commandUrls[matchedBot];
                     session.clearDialogStack();
-                } else {
-                    // Check for sub bot commands
-                    var subBot = Object.keys(commandUrls).find(val => val.toUpperCase() === msgText.toUpperCase());
-                    if (subBot && session.conversationData.forwardingUrl !== commandUrls[subBot]) {
-                        // Prepare to route messages to this sub bot
-                        session.conversationData.forwardingUrl = commandUrls[subBot];
-                        session.clearDialogStack();
-                    }
                 }
             }
 
@@ -70,7 +70,7 @@ server.post('/api/messages', [
                             session.conversationData.forwardingUrl = null;
                             session.clearDialogStack();
                             session.send(`Sorry, that bot is unavailable right now. I'm sending you back to the main bot.`);
-                            session.save().sendBatch(() => next()); // Ensure state (including stack) is saved before continuing
+                            session.save().sendBatch(() => next());
                         });
                 } else {
                     next();
@@ -105,8 +105,3 @@ var rootDialog = [
 // Bot setup
 var bot = new builder.UniversalBot(connector, rootDialog)
     .set('persistConversationData', true);
-
-var commandUrls = {
-    [resources.SUB_BOT_1_MENU]: config.subBot1Url,
-    [resources.SUB_BOT_2_MENU]: config.subBot2Url
-};

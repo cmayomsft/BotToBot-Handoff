@@ -1,0 +1,7 @@
+{
+    "port": 3978,
+    "appId": null,
+    "appPassword": null,
+    "subBot1Url": "http://localhost:3980/api/messages",
+    "subBot2Url": "http://localhost:3981/api/messages"
+}

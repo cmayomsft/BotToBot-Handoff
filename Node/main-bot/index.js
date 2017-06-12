@@ -69,7 +69,7 @@ server.post('/api/messages', [
                             // Sub-bot unreachable... stop forwarding and notify user
                             session.conversationData.forwardingUrl = null;
                             session.clearDialogStack();
-                            session.send(`Sorry, that bot is unavailable right now. I'm sending you back to the main bot.`);
+                            session.send(`Sorry, that sub-bot is unavailable right now. Sending your message to the main bot...`);
                             session.save().sendBatch(() => next());
                         });
                 } else {

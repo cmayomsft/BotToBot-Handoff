@@ -1,10 +1,10 @@
 # BotToBot-Handoff Sample Bot
 
-A sample that shows how to create a single bot user experience that is made up of independly developed and deployed bots. 
+A sample that shows how to create a single bot user experience that is made up of independently developed and deployed bots. 
 
-In this sample, the user has a conversation with a single "main bot" that "hands-off" the conversation to various "sub-bots" for it's functionality. Each sub-bot can be developed and deployed independently by disparate teams, even using differnt programming languages supported by the [Bot Framework](https://dev.botframework.com/).
+In this sample, the user has a conversation with a single "main bot" that "hands-off" the conversation to various "sub-bots" for its functionality. Each sub-bot can be developed and deployed independently by disparate teams, even using different programming languages supported by the [Bot Framework](https://dev.botframework.com/).
 
-For example, consider an "intranet bot" for a large enterprise that includes support for conversations about HR, Finance, HelpDesk, etc. Like an intranet site is made up of sub-sites (developed indpendently) for HR, Finance, HelpDesk, etc. and linked into a common navigation scheme, an "intranet bot" could provide navigation to different sub-bots for each function and hand-off conversations to the appropriate sub-bot.
+For example, consider an "intranet bot" for a large enterprise that includes support for conversations about HR, Finance, HelpDesk, etc. Like an intranet site is made up of sub-sites (developed independently) for HR, Finance, HelpDesk, etc. and linked into a common navigation scheme, an "intranet bot" could provide navigation to different sub-bots for each function and hand-off conversations to the appropriate sub-bot.
 
 ### Prerequisites
 
@@ -24,7 +24,7 @@ In the bot-to-bot handoff scenario above, the user has a conversation with a bot
 
 ### Conversation Navigation
 
-In each of the bots, conversation navigation (or the ability to change the topic of conversation) is handled via [Global Message Handlers](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers) that inspect each message for pre-defined navigation commands supported by that bot. When a Global Message Handler matches a navigation command to the [`Text`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.imessageactivity.text?view=botbuilder-3.8#Microsoft_Bot_Connector_IMessageActivity_Text) of an [`IMessageActivity`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.imessageactivity?view=botbuilder-3.8), the handler changes the conversation flow by resetting the dialog stack and forwarding the message to the `RootDialog` for the bot. The `RootDialog` inspects the `IMessageActivity` and calls the appropriate dialog for the conversation flow. The `RootDialog` also takes the appropriate action when that Dialog is finished (either successfully by calling [`IDialogStack.Done()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.idialogstack.done--1?view=botbuilder-3.8#Microsoft_Bot_Builder_Dialogs_Internals_IDialogStack_Done__1___0_) or unsuccessfully via [`IDialogStack.Fail`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.idialogstack.fail?view=botbuilder-3.8#Microsoft_Bot_Builder_Dialogs_Internals_IDialogStack_Fail_System_Exception_). Navigation commands are global to the bot, since every message is inspected for navigation commands, allowing the user to change the topic of conversation at any time in the converation. Navigation commands differ from replies, which apply to a specific prompt ("What is your name?") from the active dialog in the conversation flow. A message is considered a reply to a prompt from the active dialog if it doesn't match any navigation commands. 
+In each of the bots, conversation navigation (or the ability to change the topic of conversation) is handled via [Global Message Handlers](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers) that inspect each message for pre-defined navigation commands supported by that bot. When a Global Message Handler matches a navigation command to the [`Text`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.imessageactivity.text?view=botbuilder-3.8#Microsoft_Bot_Connector_IMessageActivity_Text) of an [`IMessageActivity`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.imessageactivity?view=botbuilder-3.8), the handler changes the conversation flow by resetting the dialog stack and forwarding the message to the `RootDialog` for the bot. The `RootDialog` inspects the `IMessageActivity` and calls the appropriate dialog for the conversation flow. The `RootDialog` also takes the appropriate action when that Dialog is finished (either successfully by calling [`IDialogStack.Done()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.idialogstack.done--1?view=botbuilder-3.8#Microsoft_Bot_Builder_Dialogs_Internals_IDialogStack_Done__1___0_) or unsuccessfully via [`IDialogStack.Fail`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.idialogstack.fail?view=botbuilder-3.8#Microsoft_Bot_Builder_Dialogs_Internals_IDialogStack_Fail_System_Exception_). Navigation commands are global to the bot, since every message is inspected for navigation commands, allowing the user to change the topic of conversation at any time in the conversation. Navigation commands differ from replies, which apply to a specific prompt ("What is your name?") from the active dialog in the conversation flow. A message is considered a reply to a prompt from the active dialog if it doesn't match any navigation commands. 
 
 For more details on providing conversation navigation in a bot, see the [Conversation Navigation](https://github.com/cmayomsft) sample (coming soon).
 
@@ -34,7 +34,7 @@ In this sample, the handoff between the main bot each of the sub-bots is facilit
 
 The main bot inspects every incoming message. If the main bot matches the incoming message text with a sub-bot's top-level navigation command (similar to the [Conversation Navigation](#Conversation-Navigation) discussion above), the main bot forwards that message to the sub-bot's messaging URL. 
 
-When the sub-bot receives that message (a navigation command), it's Global Mesage Handler code takes the appropriate action by reseting the dialog stack, forwarding the message to it's `RootDialog`, and calling the correct dialog to handle the navigation command.
+When the sub-bot receives that message (a navigation command), its Global Message Handler code takes the appropriate action by resetting the dialog stack, forwarding the message to its `RootDialog`, and calling the correct dialog to handle the navigation command.
 
 The main bot will continue forwarding messages to that sub-bot until it encounters another navigation command for another bot.
 
@@ -48,7 +48,7 @@ The sample includes a main bot ([`MainBot`](\MainBot\Controllers\MessagesControl
 
 #### Navigation Commands
 
-MainBot includes navigation commands to show it's navigation menu and to hand-off to the sub-bots. SubBot1 and SubBot2 include navigation commands for navigating their conversation flows and for handing back to the MainBot, including:
+MainBot includes navigation commands to show its navigation menu and to hand-off to the sub-bots. SubBot1 and SubBot2 include navigation commands for navigating their conversation flows and for handing back to the MainBot, including:
 
 * MainBot
   * "Menu" - Shows the navigation UI for the MainBot, in this sample a HeroCard with buttons that navigate, or hand-off, to each of the sub-bots.
@@ -60,7 +60,7 @@ MainBot includes navigation commands to show it's navigation menu and to hand-of
   * "SubBot1.1" - Calls the SubBot1_1_Dialog dialog to start a conversation flow.
   * "SubBot1.2" - Calls the SubBot1_2_Dialog dialog to start a conversation flow.
   * "SubBot1.3" - Calls the SubBot1_3_Dialog dialog to start a conversation flow.
-  * "Menu" - Will show the MainBot navigation UI, allowing the user to navigate to other sub bots.
+  * "Menu" - Shows the MainBot navigation UI, allowing the user to navigate to other sub bots.
 
 * SubBot2
   * Follows the same pattern as the SubBot1 navigation above.
@@ -73,19 +73,19 @@ When you start the MainBot, type "Menu" to show the MainBot's navigation menu.
 
 The MainBot navigation menu has buttons for navigating, or handing off, to each of the sub-bots, "SubBot1" and "SubBot2".
 
-When you click on the "SubBot1" button, it posts "SubBot1" to the conversation. This will cause the SubBot1 bot to become the active bot. SubBot1 will respond by showing it's navigation menu.
+When you click on the "SubBot1" button, it posts "SubBot1" to the conversation. This will cause the SubBot1 bot to become the active bot. SubBot1 will respond by showing its navigation menu.
 
 ![SubBotMenu](images/subbot1menu.png)
 
 **Note:** The HeroCard above is coming from SubBot1, not MainBot, but to the user it appears to be a single conversation with a single bot. 
 
-The SubBot1 navigation menu has buttons for each of it's navigation commands and to show the MainBot's navigation menu ("Menu").
+The SubBot1 navigation menu has buttons for each of its navigation commands and to show the MainBot's navigation menu ("Menu").
 
 Click the "SubBot1.1" button, which calls the `SubBot1_1_Dialog` to start a conversation flow.
 
 ![SubBot11Dialog](images/subbot11dialog.png)
 
-At this point in the conversation, the user can reply with any of the navigation commands from any of the bots, or reply to the active prompt from the active dialog to move the coversation forward. In this case, clicking the "More" button will move the dialog to the next prompt. Replying with anything other than a navgation command or "More" will not be understood by the SubBot1_1_Dialog.
+At this point in the conversation, the user can reply with any of the navigation commands from any of the bots, or reply to the active prompt from the active dialog to move the conversation forward. In this case, clicking the "More" button will move the dialog to the next prompt. Replying with anything other than a navigation command or "More" will not be understood by the SubBot1_1_Dialog.
 
 ![SubBot11DialogReply](images/subbot11dialogreply.png)
 
@@ -101,7 +101,7 @@ Clicking the "Menu" button passes control back to MainBot and shows the MainBot'
 
 ![SubBot11DialogDoneMainBot](images/subbot11dialogdonemainbot.png)
 
-Clicking the "SubBot2" button on the MainBot's navigation menu will hand off control to SubBot2 and show it's navigation menu.
+Clicking the "SubBot2" button on the MainBot's navigation menu will hand off control to SubBot2 and show its navigation menu.
 
 ![MainBotMenuSubBot2](images/mainbotmenusubbot2.png)
 
@@ -115,7 +115,7 @@ Let's see how this is accomplished in code:
 
 #### Managing Handoffs
 
-In the MainBot's [`MessageController`](\MainBot\Controllers\MessagesController.cs), MainBot stores the navigation commands that cause a hand-offs to sub-bots and the corresponding sub-bot messaging URLs in a `Dictionary`. 
+In the MainBot's [`MessageController`](\MainBot\Controllers\MessagesController.cs), MainBot stores the navigation commands that cause hand-offs to sub-bots and the corresponding sub-bot messaging URLs in a `Dictionary`. 
 
 ````C#
 // TODO: Replace with registration Web API so trusted bots can publish their commands and forwarding URLs dynamically.
@@ -133,7 +133,7 @@ private static readonly Dictionary<string, string> NavCommandForwardingUrls = ne
 
 **Note:** Navigation commands must be unique across all the bots since the MainBot inspects every message, even those being forwarded to a sub-bot, for navigation commands.
 
-In the MainBot's [`MessageController`](MainBot\Controllers\MessagesController.cs) Post method, the the messaging URL for the current bot (either MainBot or one of the sub-bots) is retreived from Conversation State.
+In the MainBot's [`MessageController`](MainBot\Controllers\MessagesController.cs) Post method, the messaging URL for the current bot (either MainBot or one of the sub-bots) is retrieved from Conversation State.
 
 ````C#
 string conversationID = activity.Conversation.Id;
@@ -145,10 +145,10 @@ BotData conversationData = await stateClient.BotState.GetConversationDataAsync(a
 var forwardingUrl = conversationData.GetProperty<string>(Resources.MainBot_Forwarding_Url_Key);
 ````
 
-If the current Activity is a `IMessageActivity`, it's `Text` property is checked to see if it matches a navigation command for the main bot or one of the sub-bots. If there is a match, the messaging URL for the corresponding bot is saved to conversation state and will be used to hand-off, or forward, the message to that bot.
+If the current Activity is a `IMessageActivity`, its `Text` property is checked to see if it matches a navigation command for the main bot or one of the sub-bots. If there is a match, the messaging URL for the corresponding bot is saved to conversation state and will be used to hand-off, or forward, the message to that bot.
 
 ````C#
-// If the activity is a message, check to see if it's a navgation command.
+// If the activity is a message, check to see if it's a navigation command.
 if (activity.Type == ActivityTypes.Message)
 {
     var message = activity as IMessageActivity;
@@ -174,7 +174,7 @@ if (activity.Type == ActivityTypes.Message)
 }
 ````
 
-If the URL of the active bot is corresponds to the main bot, the message is sent to the MainBot's `RootDialog`. Otherwise, the message is forwarded to the sub-bot by sending it to the sub-bot's messaging URL via an HTTP Post.
+If the URL of the active bot corresponds to the main bot, the message is sent to the MainBot's `RootDialog`. Otherwise, the message is forwarded to the sub-bot by sending it to the sub-bot's messaging URL via an HTTP Post.
 
 ````C#
 // If the forwarding URL is the main bot URL, send the message to the dialog stack.
@@ -223,7 +223,7 @@ else
 
 #### Fielding a Handoff
 
-In each "sub-bot", the Global Message Handler code will be inspecting incoming messages for navigation commands. Per the [Conversation Navigation](#Conversation-Navigation) discussion above, if the message text matches a navigation command the dialog stack is cleared and the message is forwarded to the `Root Dialog`. 
+In each "sub-bot", the Global Message Handler code will be inspecting incoming messages for navigation commands. Per the [Conversation Navigation](#Conversation-Navigation) discussion above, if the message text matches a navigation command, the dialog stack is cleared and the message is forwarded to the `Root Dialog`. 
 
 In SubBot1's [`RootDialog`](SubBot1\Dialogs\RootDialog.cs), the navigation command is used to display the navigation menu card for the bot ("SubBot1") or to call the appropriate dialog for the command ("SubBot1.1").
 

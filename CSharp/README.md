@@ -11,10 +11,10 @@ For example, consider an "intranet bot" for a large enterprise that includes sup
 To run this sample, install the prerequisites by following the steps in the [Bot Builder SDK for .NET Quickstart](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-quickstart) section of the documentation.
 
 This sample assumes you're familiar with:
-* [Bot Builder for .NET SDK](https://dev.botframework.com/)
+* [Bot Builder for .NET SDK](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-overview)
 * [Dialog API](https://docs.botframework.com/en-us/csharp/builder/sdkreference/dialogs.html)
 * [Global Message Handlers](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-global-handlers)
-* [Conversation Navigation](https://github.com/cmayomsft) (coming soon).
+* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation).
 
 ### Overview
 
@@ -26,7 +26,7 @@ In the bot-to-bot handoff scenario above, the user has a conversation with a bot
 
 In each of the bots, conversation navigation (or the ability to change the topic of conversation) is handled via [Global Message Handlers](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers) that inspect each message for pre-defined navigation commands supported by that bot. When a Global Message Handler matches a navigation command to the [`Text`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.imessageactivity.text?view=botbuilder-3.8#Microsoft_Bot_Connector_IMessageActivity_Text) of an [`IMessageActivity`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.imessageactivity?view=botbuilder-3.8), the handler changes the conversation flow by resetting the dialog stack and forwarding the message to the `RootDialog` for the bot. The `RootDialog` inspects the `IMessageActivity` and calls the appropriate dialog for the conversation flow. The `RootDialog` also takes the appropriate action when that Dialog is finished (either successfully by calling [`IDialogStack.Done()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.idialogstack.done--1?view=botbuilder-3.8#Microsoft_Bot_Builder_Dialogs_Internals_IDialogStack_Done__1___0_) or unsuccessfully via [`IDialogStack.Fail`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.idialogstack.fail?view=botbuilder-3.8#Microsoft_Bot_Builder_Dialogs_Internals_IDialogStack_Fail_System_Exception_). Navigation commands are global to the bot, since every message is inspected for navigation commands, allowing the user to change the topic of conversation at any time in the conversation. Navigation commands differ from replies, which apply to a specific prompt ("What is your name?") from the active dialog in the conversation flow. A message is considered a reply to a prompt from the active dialog if it doesn't match any navigation commands. 
 
-For more details on providing conversation navigation in a bot, see the [Conversation Navigation](https://github.com/cmayomsft) sample (coming soon).
+For more details on providing conversation navigation in a bot, see the [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation) sample.
 
 ### Handoff
 
@@ -319,7 +319,7 @@ public class RootDialog : IDialog<object>
 ### More Information
 
 For more information on the concepts shown in this sample, check out the following resources:
-* [Bot Builder for .NET SDK](https://dev.botframework.com/)
+* [Bot Builder for .NET SDK](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-overview)
 * [Dialog API](https://docs.botframework.com/en-us/csharp/builder/sdkreference/dialogs.html)
 * [Global Message Handlers](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-global-handlers)
-* [Conversation Navigation](https://github.com/cmayomsft) (coming soon).
+* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation)

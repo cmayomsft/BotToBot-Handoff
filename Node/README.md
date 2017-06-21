@@ -11,10 +11,10 @@ For example, consider an "intranet bot" for a large enterprise that includes sup
 To run this sample, install the prerequisites by following the steps in the [Bot Builder SDK for Node.js Quickstart](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-quickstart) section of the documentation.
 
 This sample assumes you're familiar with:
-* [Bot Builder for Node.js SDK](https://dev.botframework.com/)
+* [Bot Builder for Node.js SDK](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-overview)
 * [Dialog API](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-dialog-overview)
 * [Intercepting messages via middleware](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-intercept-messages)
-* [Conversation Navigation](https://github.com/cmayomsft) (coming soon).
+* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation).
 
 ### Overview
 
@@ -24,9 +24,9 @@ In the bot-to-bot handoff scenario above, the user has a conversation with a bot
 
 ### Conversation Navigation
 
-In each of the bots, conversation navigation (or the ability to change the topic of conversation) is handled via [middleware](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/capability-middlewareLogging) that inspect each message for pre-defined navigation commands supported by that bot. When middleware code matches a navigation command to the [`Text`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html#text) of an [`IMessage`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html), the handler changes the conversation flow by resetting the dialog stack and sending the message to the `RootDialog` for the bot. The `RootDialog` inspects the `IMessage` and calls the appropriate dialog for the conversation flow. Navigation commands are global to the bot, since every message is inspected for navigation commands, allowing the user to change the topic of conversation at any time in the conversation. Navigation commands differ from replies, which apply to a specific prompt ("What is your name?") from the active dialog in the conversation flow. A message is considered a reply to a prompt from the active dialog if it doesn't match any navigation commands. 
+In each of the bots, conversation navigation (or the ability to change the topic of conversation) is handled via [middleware](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/capability-middlewareLogging) that inspects each message for pre-defined navigation commands supported by that bot. When middleware code matches a navigation command to the [`Text`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html#text) of an [`IMessage`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html), the handler changes the conversation flow by resetting the dialog stack and sending the message to the `RootDialog` for the bot. The `RootDialog` inspects the `IMessage` and calls the appropriate dialog for the conversation flow. Navigation commands are global to the bot, since every message is inspected for navigation commands, allowing the user to change the topic of conversation at any time in the conversation. Navigation commands differ from replies, which apply to a specific prompt ("What is your name?") from the active dialog in the conversation flow. A message is considered a reply to a prompt from the active dialog if it doesn't match any navigation commands. 
 
-For more details on providing conversation navigation in a bot, see the [Conversation Navigation](https://github.com/cmayomsft) sample (coming soon).
+For more details on providing conversation navigation in a bot, see the [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation) sample.
 
 ### Handoff
 
@@ -145,7 +145,7 @@ if (req.body.type === 'message') {
 }
 ````
 
-Then, the forwarding URL for the current bot is retrieved from the conversation state. (This URL may have just been set in the previous block of code.)
+Then, the forwarding URL for the current bot is retrieved from the conversation state (this URL may have just been set in the previous block of code.)
 
 ````node
 var currForwardingUrl = session.conversationData.forwardingUrl;
@@ -238,7 +238,8 @@ var rootDialog = [
 ### More Information
 
 For more information on the concepts shown in this sample, check out the following resources:
-* [Bot Builder for Node.js SDK](https://dev.botframework.com/)
+* [Bot Builder for Node.js SDK](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-overview)
 * [Dialog API](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-dialog-overview)
 * [Intercepting messages via middleware](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-intercept-messages)
-* [Conversation Navigation](https://github.com/cmayomsft) (coming soon).
+* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation)
+

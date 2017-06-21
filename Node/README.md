@@ -14,7 +14,7 @@ This sample assumes you're familiar with:
 * [Bot Builder for Node.js SDK](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-overview)
 * [Dialog API](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-dialog-overview)
 * [Intercepting messages via middleware](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-intercept-messages)
-* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation).
+* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation)
 
 ### Overview
 

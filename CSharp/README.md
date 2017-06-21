@@ -14,7 +14,7 @@ This sample assumes you're familiar with:
 * [Bot Builder for .NET SDK](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-overview)
 * [Dialog API](https://docs.botframework.com/en-us/csharp/builder/sdkreference/dialogs.html)
 * [Global Message Handlers](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-global-handlers)
-* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation).
+* [Conversation Navigation](https://github.com/cmayomsft/BotBuilder-Getting-Started/tree/master/CSharp/basics-Navigation)
 
 ### Overview
 
